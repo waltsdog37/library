@@ -1,36 +1,86 @@
+body {
+    background-color: #000024;
+    background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    font-size: 70px;
+    font-weight: bold;
+    padding: 20px;
+    margin: 0px;
+    color: rgb(180, 180, 180);
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+}
+
+#new-book {
+    font-size: 25px;
+    width: 200px;
+}
+
 #main-container {
     display: flex;
     flex-direction: row;
 }
 
 .card-container {
-    border: solid red 3px;
-    width: 100px;
-    height: 100px;
+    background-color: rgb(105, 58, 58);
+    color: white;
+    width: 150px;
+    height: 200px;
     margin: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+
 }
 
 #modal-box {
+    font-size: 25px;
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    position: absolute; /* Stay in place */
     z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; /* Full width */
+    height: 350px; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgb(179, 28, 28); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    border-radius: 15%;
 }
+
 #user-input {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    align-items: center;
+    color: white;
+    background-color: rgb(48, 48, 48);
 }
 
 input {
-    width: 250px;
+    width: 300px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#input-read {;
+    width: 30%;
 }
 
 #input-submit {
-    width: 250px;
+    margin: 10px;
+    width: 150px;
+    font-size: 25px;
+    outline: none;
+}
+
+#input-submit:hover {
+    background-color: rgb(68, 67, 67);
+    color: white;
+    outline: none;
 }

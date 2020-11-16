@@ -81,7 +81,6 @@ function modalSubmit() {
 }
 
 
-
 // dummy books - can be deleted
 title = "The Hobbit";
 author = "JRR Tolkien";
