@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>JS Library</title>
+
+</head>
+
+<body>
+
+    <button id="new-book" onclick=modalInput()>Add New Book</button>
+
+    <div class="main-container"></div>
+
+    <div id="modal-box">
+        <div id="user-input">
+            <h2>Add a New Book to the Library</h2>
+            <input type="text" name="Title" id="input-title">
+            <input type="text" name="Author" id="input-author">
+            <input type="text" name="Pages" id="input-pages">
+            <input type="checkbox" name="Read" id="input-read">
+            <button id="input-submit" onclick=modalSubmit()>Submit</button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
