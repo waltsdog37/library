@@ -12,7 +12,7 @@ function Book(title, author, pages, read) {
 }
 
 // adding function to Books prototype
-Book.prototype.addBook = function () {
+Book.prototype.addBook = function (event) {
     myLibrary.push(this);
     clearCards();
     console.log(myLibrary);
@@ -68,7 +68,7 @@ function modalInput() {
 }
 
 // submit user data from modal pop up
-function modalSubmit() {
+function modalSubmit(event) {
     title = document.getElementById("input-title").value;
     author = document.getElementById("input-author").value;
     pages = document.getElementById("input-pages").value;
