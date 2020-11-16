@@ -1,11 +1,6 @@
 let myLibrary = [];
-let newBook;
-let title;
-let author;
-let pages;
-let read;
 
-let mainContainer = document.querySelector(".main-container");
+let mainContainer = document.getElementById("main-container");
 let modalBox = document.getElementById("modal-box");
 
 // constructor for books
@@ -17,8 +12,10 @@ function Book(title, author, pages, read) {
 }
 
 // adding function to Books prototype
-Book.prototype.addBook = function() {
+Book.prototype.addBook = function () {
     myLibrary.push(this);
+    clearCards();
+    console.log(myLibrary);
     createCards();
 }
 
@@ -28,14 +25,20 @@ function addBookToLibrary(title, author, pages, read) {
     newBook.addBook();
 }
 
+// clear existing cards
+function clearCards() {
+    mainContainer.innerHTML = "";
+}
+
 // create HTML cards to display all books
-function createCards(){
-    for (let i=0; i < myLibrary.length; i++) {
+function createCards() {
+    for (let i = 0; i < myLibrary.length; i++) {
+
         // create new card
         let newCardDiv = document.createElement("div");
         newCardDiv.classList.add("card-container");
         mainContainer.appendChild(newCardDiv);
-        
+
         // create title div and add books title as text
         let newTitle = document.createElement("div");
         newTitle.classList.add("title");
@@ -56,7 +59,6 @@ function createCards(){
         newCardDiv.appendChild(newPages);
         let cardPages = myLibrary[i].pages;
         newPages.innerText = cardPages;
-
     }
 }
 
@@ -67,35 +69,31 @@ function modalInput() {
 
 // submit user data from modal pop up
 function modalSubmit() {
-    title = document.getElementById("input-title");
-    author = document.getElementById("input-author");
-    pages = document.getElementById("input-pages");
+    title = document.getElementById("input-title").value;
+    author = document.getElementById("input-author").value;
+    pages = document.getElementById("input-pages").value;
     read = true;
-    addBookToLibrary(title, author, pages, read);
     modalBox.style.display = "none";
+    addBookToLibrary(title, author, pages, read);
+
+    // clear input fields
+    //form.reset();
 }
 
 
 
 // dummy books - can be deleted
-title = "hobbit";
-author = "JRR";
+title = "The Hobbit";
+author = "JRR Tolkien";
 pages = 259;
 read = true;
 
 addBookToLibrary(title, author, pages, read);
 
-title = "Dragons of Autumn Twilight";
-author = "Margaret Weis";
-pages = 350;
+title = "Queen's Gambit";
+author = "Walter Tevis";
+pages = 243;
 read = true;
 
 addBookToLibrary(title, author, pages, read);
 
-title = "Dragons of Winter Night";
-author = "Margaret Weis";
-pages = 300;
-read = true;
-
-addBookToLibrary(title, author, pages, read);
-createCards();

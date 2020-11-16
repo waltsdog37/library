@@ -14,17 +14,19 @@
 
     <button id="new-book" onclick=modalInput()>Add New Book</button>
 
-    <div class="main-container"></div>
+    <div id="main-container"></div>
 
     <div id="modal-box">
-        <div id="user-input">
-            <h2>Add a New Book to the Library</h2>
-            <input type="text" name="Title" id="input-title">
-            <input type="text" name="Author" id="input-author">
-            <input type="text" name="Pages" id="input-pages">
-            <input type="checkbox" name="Read" id="input-read">
-            <button id="input-submit" onclick=modalSubmit()>Submit</button>
-        </div>
+            <form id="user-input">
+                <h2>Add a New Book to the Library</h2>
+                <input type="text" name="Title" placeholder="Title" id="input-title">
+                <input type="text" name="Author" placeholder="Author" id="input-author">
+                <input type="text" name="Pages" placeholder="Number of Pages" id="input-pages">
+                <input type="checkbox" name="Read" id="input-read">
+                <button id="input-submit" onclick=modalSubmit()>Submit</button>
+            </form>
+        
+
     </div>
 
 
