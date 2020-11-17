@@ -81,6 +81,7 @@ function modalSubmit() {
     title = document.getElementById("input-title").value;
     author = document.getElementById("input-author").value;
     pages = document.getElementById("input-pages").value;
+    pages = parseInt(pages);
     read = document.getElementById("check-read").checked;
     errorMessage = document.getElementById("error-message");
 
@@ -93,7 +94,7 @@ function modalSubmit() {
         errorMessage.textContent = "Please enter an author";
         return false;
     }
-    while (pages == "") {
+    while (pages == "" || isNaN(pages)) {
         errorMessage.textContent = "Please enter the number of pages"
         return false;
     }
