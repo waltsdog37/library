@@ -1,5 +1,5 @@
 let myLibrary = [];
-
+let errorMessage;
 let mainContainer = document.getElementById("main-container");
 let modalBox = document.getElementById("modal-box");
 
@@ -15,7 +15,6 @@ function Book(title, author, pages, read) {
 Book.prototype.addBook = function (event) {
     myLibrary.push(this);
     clearCards();
-    console.log(myLibrary);
     createCards();
 }
 
@@ -68,9 +67,7 @@ function createCards() {
         let cardRead = myLibrary[i].read;
         if (cardRead === true) {
             newRead.checked = true;
-        };
-
-
+        }
     }
 }
 
@@ -85,7 +82,23 @@ function modalSubmit() {
     author = document.getElementById("input-author").value;
     pages = document.getElementById("input-pages").value;
     read = document.getElementById("check-read").checked;
-    console.log(read);
+    errorMessage = document.getElementById("error-message");
+
+    // prevent submit with blank info
+    while (title == "") {
+        errorMessage.textContent = "Please enter a title";
+        return false;
+    }
+    while (author == "") {
+        errorMessage.textContent = "Please enter an author";
+        return false;
+    }
+    while (pages == "") {
+        errorMessage.textContent = "Please enter the number of pages"
+        return false;
+    }
+
+    // hide modal box on submit
     modalBox.style.display = "none";
     addBookToLibrary(title, author, pages, read);
 
@@ -93,4 +106,6 @@ function modalSubmit() {
     document.getElementById("input-title").value = "";
     document.getElementById("input-author").value = '';
     document.getElementById("input-pages").value = '';
+    errorMessage.textContent = "";
 }
+

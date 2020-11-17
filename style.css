@@ -96,3 +96,12 @@ input {
 .author {
     text-transform: capitalize;
 }
+
+#check-read {
+    width: 20px;
+    height: 20px;
+}
+
+#error-message {
+    color: red;
+}
