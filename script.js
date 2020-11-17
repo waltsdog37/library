@@ -43,7 +43,7 @@ function createCards() {
         let newTitle = document.createElement("div");
         newTitle.classList.add("title");
         newCardDiv.appendChild(newTitle);
-        let cardTitle = myLibrary[i].title;
+        let cardTitle = myLibrary[i].title.toUpperCase();
         newTitle.innerText = cardTitle;
 
         // create author div and add books author as text
@@ -58,7 +58,19 @@ function createCards() {
         newPages.classList.add("pages");
         newCardDiv.appendChild(newPages);
         let cardPages = myLibrary[i].pages;
-        newPages.innerText = cardPages;
+        newPages.innerText = cardPages + " pages";
+
+        // create read div and add checkbox for if read
+        let newRead = document.createElement("INPUT");
+        newRead.classList.add("read");
+        newRead.setAttribute("type", "checkbox");
+        newCardDiv.appendChild(newRead);
+        let cardRead = myLibrary[i].read;
+        if (cardRead === true) {
+            newRead.checked = true;
+        };
+
+
     }
 }
 
@@ -68,31 +80,17 @@ function modalInput() {
 }
 
 // submit user data from modal pop up
-function modalSubmit(event) {
+function modalSubmit() {
     title = document.getElementById("input-title").value;
     author = document.getElementById("input-author").value;
     pages = document.getElementById("input-pages").value;
-    read = true;
+    read = document.getElementById("check-read").checked;
+    console.log(read);
     modalBox.style.display = "none";
     addBookToLibrary(title, author, pages, read);
 
     // clear input fields
-    //form.reset();
+    document.getElementById("input-title").value = "";
+    document.getElementById("input-author").value = '';
+    document.getElementById("input-pages").value = '';
 }
-
-
-// dummy books - can be deleted
-title = "The Hobbit";
-author = "JRR Tolkien";
-pages = 259;
-read = true;
-
-addBookToLibrary(title, author, pages, read);
-
-title = "Queen's Gambit";
-author = "Walter Tevis";
-pages = 243;
-read = true;
-
-addBookToLibrary(title, author, pages, read);
-

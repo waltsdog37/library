@@ -24,16 +24,19 @@ body {
 #main-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .card-container {
     background-color: rgb(105, 58, 58);
+    border: solid black 3px;
     color: white;
     width: 150px;
     height: 200px;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 20px;
+    text-align: center;
 
 }
 
@@ -68,8 +71,13 @@ input {
     margin-bottom: 10px;
 }
 
-#input-read {;
-    width: 30%;
+#input-read {
+    display: flex;
+    flex-direction: row;
+}
+
+#check-read {
+    width: 100%;
 }
 
 #input-submit {
@@ -83,4 +91,8 @@ input {
     background-color: rgb(68, 67, 67);
     color: white;
     outline: none;
+}
+
+.author {
+    text-transform: capitalize;
 }
