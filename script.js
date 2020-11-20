@@ -34,8 +34,10 @@ function createCards() {
     for (let i = 0; i < myLibrary.length; i++) {
 
         // create new card
+        // also adds a data tag for the index in myLibrary array
         let newCardDiv = document.createElement("div");
         newCardDiv.classList.add("card-container");
+        newCardDiv.setAttribute("index", "index"+(i+1));
         mainContainer.appendChild(newCardDiv);
 
         // create title div and add books title as text
@@ -68,7 +70,9 @@ function createCards() {
         if (cardRead === true) {
             newRead.checked = true;
         }
-    }
+
+        // newRead.addEventListener("change", colourOfCard());
+    } colourOfCard();
 }
 
 // create pop up for user input of new book
@@ -110,3 +114,18 @@ function modalSubmit() {
     errorMessage.textContent = "";
 }
 
+// change the bg colour of the card, if book is read
+function colourOfCard () {
+    let cardContainer = document.querySelectorAll(".card-container");
+    for (let j = 0; j < myLibrary.length; j++) {
+        let checkmark = cardContainer[j].querySelector(".read").checked;
+        if (checkmark === true) {
+            cardContainer[j].style.backgroundColor = "green";
+        } else {
+            cardContainer[j].style.backgroundColor = "rgb(105, 58, 58)";
+        }
+    }
+}
+
+addBookToLibrary("hobbit", "JRR", "259", true);
+addBookToLibrary("queen's gambit", "Tevis", "72", false);
