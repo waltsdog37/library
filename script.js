@@ -18,6 +18,7 @@ Book.prototype.addBook = function (event) {
     createCards();
 }
 
+
 // takes input and creates a new book, then adds to myLibrary array
 function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read);
@@ -37,24 +38,24 @@ function createCards() {
         // also adds a data tag for the index in myLibrary array
         let newCardDiv = document.createElement("div");
         newCardDiv.classList.add("card-container");
-        newCardDiv.setAttribute("index", "index"+(i+1));
+        newCardDiv.setAttribute("index", "index"+ i);
         mainContainer.appendChild(newCardDiv);
 
-        // create title div and add books title as text
+        // create title div and add book's title as text
         let newTitle = document.createElement("div");
         newTitle.classList.add("title");
         newCardDiv.appendChild(newTitle);
         let cardTitle = myLibrary[i].title.toUpperCase();
         newTitle.innerText = cardTitle;
 
-        // create author div and add books author as text
+        // create author div and add book's author as text
         let newAuthor = document.createElement("div");
         newAuthor.classList.add("author");
         newCardDiv.appendChild(newAuthor);
         let cardAuthor = myLibrary[i].author;
         newAuthor.innerText = cardAuthor;
 
-        // create pages div and add books # of pages as text
+        // create pages div and add book's # of pages as text
         let newPages = document.createElement("div");
         newPages.classList.add("pages");
         newCardDiv.appendChild(newPages);
@@ -62,17 +63,14 @@ function createCards() {
         newPages.innerText = cardPages + " pages";
 
         // create read div and add checkbox for if read
-        let newRead = document.createElement("INPUT");
-        newRead.classList.add("read");
-        newRead.setAttribute("type", "checkbox");
-        newCardDiv.appendChild(newRead);
-        let cardRead = myLibrary[i].read;
-        if (cardRead === true) {
-            newRead.checked = true;
-        }
-
-        // newRead.addEventListener("change", colourOfCard());
-    } colourOfCard();
+        let newReadButton = document.createElement("button");
+        newReadButton.classList.add("read");
+        newReadButton.innerText = "Read";
+        newReadButton.addEventListener("click", function() {
+            readStatus(i);
+        });
+        newCardDiv.appendChild(newReadButton);
+    }colourOfCard();
 }
 
 // create pop up for user input of new book
@@ -118,14 +116,28 @@ function modalSubmit() {
 function colourOfCard () {
     let cardContainer = document.querySelectorAll(".card-container");
     for (let j = 0; j < myLibrary.length; j++) {
-        let checkmark = cardContainer[j].querySelector(".read").checked;
-        if (checkmark === true) {
+        let ifRead = myLibrary[j].read;
+        if (ifRead === true) {
             cardContainer[j].style.backgroundColor = "green";
         } else {
             cardContainer[j].style.backgroundColor = "rgb(105, 58, 58)";
         }
     }
 }
+
+// change read status when checkbox is checked
+function readStatus (i) {
+    if (myLibrary[i].read === false) {
+        myLibrary[i].read = true;
+    } else {
+        myLibrary[i].read = false;
+    }
+    colourOfCard();
+
+    // if (newRead.checked) {
+
+    }
+
 
 addBookToLibrary("hobbit", "JRR", "259", true);
 addBookToLibrary("queen's gambit", "Tevis", "72", false);
