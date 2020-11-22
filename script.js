@@ -38,27 +38,39 @@ function createCards() {
         // also adds a data tag for the index in myLibrary array
         let newCardDiv = document.createElement("div");
         newCardDiv.classList.add("card-container");
-        newCardDiv.setAttribute("index", "index"+ i);
+        newCardDiv.setAttribute("index", "index" + i);
         mainContainer.appendChild(newCardDiv);
+
+        let cardFlip = document.createElement("div");
+        cardFlip.classList.add("card-flip");
+        newCardDiv.appendChild(cardFlip);
+
+        let newFront = document.createElement("div");
+        newFront.classList.add("card-front");
+        cardFlip.appendChild(newFront);
+
+        let newBack = document.createElement("div");
+        newBack.classList.add("card-back");
+        cardFlip.appendChild(newBack);
 
         // create title div and add book's title as text
         let newTitle = document.createElement("div");
         newTitle.classList.add("title");
-        newCardDiv.appendChild(newTitle);
+        newFront.appendChild(newTitle);
         let cardTitle = myLibrary[i].title.toUpperCase();
         newTitle.innerText = cardTitle;
 
         // create author div and add book's author as text
         let newAuthor = document.createElement("div");
         newAuthor.classList.add("author");
-        newCardDiv.appendChild(newAuthor);
+        newBack.appendChild(newAuthor);
         let cardAuthor = myLibrary[i].author;
         newAuthor.innerText = cardAuthor;
 
         // create pages div and add book's # of pages as text
         let newPages = document.createElement("div");
         newPages.classList.add("pages");
-        newCardDiv.appendChild(newPages);
+        newBack.appendChild(newPages);
         let cardPages = myLibrary[i].pages;
         newPages.innerText = cardPages + " pages";
 
@@ -66,12 +78,13 @@ function createCards() {
         let newReadButton = document.createElement("button");
         newReadButton.classList.add("read");
         newReadButton.innerText = "Read";
-        newReadButton.addEventListener("click", function() {
+        newReadButton.addEventListener("click", function () {
             readStatus(i);
         });
-        newCardDiv.appendChild(newReadButton);
-    }colourOfCard();
+        newBack.appendChild(newReadButton);
+    } colourOfCard();
 }
+
 
 // create pop up for user input of new book
 function modalInput() {
@@ -107,36 +120,34 @@ function modalSubmit() {
 
     // clear input fields
     document.getElementById("input-title").value = "";
-    document.getElementById("input-author").value = '';
-    document.getElementById("input-pages").value = '';
+    document.getElementById("input-author").value = "";
+    document.getElementById("input-pages").value = "";
     errorMessage.textContent = "";
 }
 
 // change the bg colour of the card, if book is read
-function colourOfCard () {
-    let cardContainer = document.querySelectorAll(".card-container");
+function colourOfCard() {
+    let frontContainer = document.querySelectorAll(".card-front");
+    let button = document.querySelectorAll("button");
     for (let j = 0; j < myLibrary.length; j++) {
         let ifRead = myLibrary[j].read;
         if (ifRead === true) {
-            cardContainer[j].style.backgroundColor = "green";
+            frontContainer[j].style.backgroundColor = "green";
         } else {
-            cardContainer[j].style.backgroundColor = "rgb(105, 58, 58)";
+            frontContainer[j].style.backgroundColor = "rgb(105, 58, 58)";
         }
     }
 }
 
 // change read status when checkbox is checked
-function readStatus (i) {
+function readStatus(i) {
     if (myLibrary[i].read === false) {
         myLibrary[i].read = true;
     } else {
         myLibrary[i].read = false;
     }
     colourOfCard();
-
-    // if (newRead.checked) {
-
-    }
+}
 
 
 addBookToLibrary("hobbit", "JRR", "259", true);
