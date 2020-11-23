@@ -138,7 +138,7 @@ function modalSubmit() {
 // change the bg colour of the card, if book is read
 function colourOfCard() {
     let frontContainer = document.querySelectorAll(".card-front");
-    let button = document.querySelectorAll("button");
+    //let button = document.querySelectorAll("button");
     for (let j = 0; j < myLibrary.length; j++) {
         let ifRead = myLibrary[j].read;
         if (ifRead === true) {
@@ -162,9 +162,7 @@ function readStatus(i) {
 
 // delete a book from the array and reload cards
 function deleteBook(i) {
-    console.log(myLibrary);
     myLibrary.splice(i, 1);
-    console.log(myLibrary);
     addStorage();
     clearCards();
     createCards();
@@ -180,7 +178,6 @@ function getStorage() {
     myLibrary = JSON.parse(localStorage.getItem("library"));
     if (myLibrary == null) {
         myLibrary = [];
-        console.log(myLibrary, " so empty");
     }
     createCards();
 }
