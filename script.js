@@ -186,4 +186,3 @@ function getStorage() {
 }
 
 getStorage();
-console.log(myLibrary, "wtf");
