@@ -1,5 +1,4 @@
-let myLibrary = [];
-
+let myLibrary;
 let errorMessage;
 let mainContainer = document.getElementById("main-container");
 let modalBox = document.getElementById("modal-box");
@@ -15,6 +14,7 @@ function Book(title, author, pages, read) {
 // adding function to Books prototype
 Book.prototype.addBook = function (event) {
     myLibrary.push(this);
+    addStorage();
     clearCards();
     createCards();
 }
@@ -156,6 +156,7 @@ function readStatus(i) {
     } else {
         myLibrary[i].read = false;
     }
+    addStorage();
     colourOfCard();
 }
 
@@ -164,12 +165,27 @@ function deleteBook(i) {
     console.log(myLibrary);
     myLibrary.splice(i, 1);
     console.log(myLibrary);
+    addStorage();
     clearCards();
     createCards();
-
 }
 
-addBookToLibrary("hobbit", "JRR", "259", true);
-addBookToLibrary("queen's gambit", "Tevis", "72", false);
+// add myLibrary to local storage
+function addStorage() {
+    localStorage.setItem('library', JSON.stringify(myLibrary));
+}
 
+// retrieve myLibrary from local storage
+function getStorage() {
+    myLibrary = JSON.parse(localStorage.getItem("library"));
+    if (myLibrary == null) {
+        myLibrary = [];
+        console.log(myLibrary, " so empty");
+    }
+    createCards();
+}
 
+// addBookToLibrary("the hobbit", "JRR tolkien", "259", true);
+// addBookToLibrary("the queen's gambit", "walter Tevis", "243", false);
+getStorage();
+console.log(myLibrary, "wtf");
