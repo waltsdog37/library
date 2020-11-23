@@ -185,7 +185,5 @@ function getStorage() {
     createCards();
 }
 
-// addBookToLibrary("the hobbit", "JRR tolkien", "259", true);
-// addBookToLibrary("the queen's gambit", "walter Tevis", "243", false);
 getStorage();
 console.log(myLibrary, "wtf");
