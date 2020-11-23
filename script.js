@@ -1,4 +1,5 @@
 let myLibrary = [];
+
 let errorMessage;
 let mainContainer = document.getElementById("main-container");
 let modalBox = document.getElementById("modal-box");
@@ -82,6 +83,15 @@ function createCards() {
             readStatus(i);
         });
         newBack.appendChild(newReadButton);
+
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button");
+        deleteButton.innerText = "Delete";
+        deleteButton.addEventListener("click", function () {
+            deleteBook(i);
+        });
+        newBack.appendChild(deleteButton);
+
     } colourOfCard();
 }
 
@@ -149,6 +159,17 @@ function readStatus(i) {
     colourOfCard();
 }
 
+// delete a book from the array and reload cards
+function deleteBook(i) {
+    console.log(myLibrary);
+    myLibrary.splice(i, 1);
+    console.log(myLibrary);
+    clearCards();
+    createCards();
+
+}
 
 addBookToLibrary("hobbit", "JRR", "259", true);
 addBookToLibrary("queen's gambit", "Tevis", "72", false);
+
+
